@@ -9,7 +9,7 @@ import time
 cv2.useOptimized()
 # Initializing the HOG person
 # detector
-cv2.useOptimized()
+
 hog = cv2.HOGDescriptor()
 hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
   
@@ -30,8 +30,8 @@ resized_image = cv2.resize(frame, (new_width, new_height))
 # Detecting all the regions in the 
 # Image that has a pedestrians inside it
 (regions, _) = hog.detectMultiScale(resized_image, 
-                                    winStride=(8,8),
-                                    padding=(8, 8),
+                                    winStride=(4,4),
+                                    padding=(4, 4),
                                     scale=1.05)
 print("hog scaled")
 print(regions)
