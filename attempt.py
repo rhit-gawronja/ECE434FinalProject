@@ -2,7 +2,10 @@
 
 import cv2
 #import imutils
-  
+
+
+# initializing tensorflow interpreter
+cv2.useOptimized()
 # Initializing the HOG person
 # detector
 hog = cv2.HOGDescriptor()
