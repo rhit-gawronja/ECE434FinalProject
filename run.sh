@@ -1,1 +1,1 @@
-python3 ./attempt.pyl
+python3 ./attempt.py
