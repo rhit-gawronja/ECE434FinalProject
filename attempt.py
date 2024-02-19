@@ -3,8 +3,7 @@
 import cv2
 import time
 #import imutils
-
-
+from messaging import sendText
 # initializing tensorflow interpreter
 cv2.useOptimized()
 # Initializing the HOG person
@@ -13,7 +12,7 @@ cv2.useOptimized()
 hog = cv2.HOGDescriptor()
 hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
   
-# Reading the Image
+# Reading the Image by grabbing the camera
 camera = cv2.VideoCapture(0)
 
 ret, frame = camera.read()
@@ -23,8 +22,8 @@ print("read image")
 #image = imutils.resize(image,
 #                       width=min(400, image.shape[1]))
 
-new_width = 450 #450 
-new_height = 400 # 400
+new_width = 800 #450 
+new_height = 750 # 400
 hog_time_start = time.time()
 resized_image = cv2.resize(frame, (new_width, new_height))
 # Detecting all the regions in the 
@@ -36,10 +35,16 @@ resized_image = cv2.resize(frame, (new_width, new_height))
 print("hog scaled")
 print(regions)
 # Drawing the regions in the Image
+num_pp=0
 for (x, y, w, h) in regions:
-    cv2.rectangle(resized_image, (x, y), 
+    if w*h >4000:
+        cv2.rectangle(resized_image, (x, y), 
                   (x + w, y + h), 
                   (0, 0, 255), 2)
+        num_pp+=1
+        
+if num_pp>=1:
+    sendText()
 print("region drawn")
 hog_time_end = time.time()
 
