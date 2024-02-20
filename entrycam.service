@@ -1,0 +1,10 @@
+[Unit]
+Description=entry camera service
+
+[Service]
+WorkingDirectory=/home/debian/ECE434FinalProject/
+ExecStart=/usr/bin/python3 /home/debian/ECE434FinalProject/entrycam.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
