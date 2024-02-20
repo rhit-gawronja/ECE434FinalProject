@@ -1,1 +1,2 @@
-python3 ./attempt.py
+#!/bin/bash
+python3 ./entrycam.py
