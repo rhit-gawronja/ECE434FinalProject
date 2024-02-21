@@ -3,9 +3,10 @@ from email.message import EmailMessage
 import smtplib
 import imghdr
 from smtplib import SMTP
-sender = 'jagswe2024@gmail.com'
-
-receiver = '7084762211@vtext.com'
+from config import configureNotificationEmail, configureNotificationNumber,configureSTMPPass
+sender = configureNotificationEmail()
+stmpLogin = configureSTMPPass()
+receiver = configureNotificationNumber()
 
 #Next we create the message:
 
@@ -27,7 +28,7 @@ def sendText():
 
 #run a subroutine with your email login and password for your gmail.
     newMessage = EmailMessage()                         
-    newMessage['Subject'] = "Check out the new logo" 
+    newMessage['Subject'] = "Person detected" 
     newMessage['From'] =  sender                  
     newMessage['To'] = receiver
     newMessage.set_content('person Detected in the area') 
@@ -41,7 +42,7 @@ def sendText():
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
     
-        smtp.login(sender, 'vofl sdfh pdjq kidt')              
+        smtp.login(sender, stmpLogin)              
         smtp.send_message(newMessage)
 
 
